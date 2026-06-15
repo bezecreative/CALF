@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>California Agricultural Leadership Foundation — Homepage Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* CALF brand palette */
+    --navy-900:#012e4d;
+    --navy:#01426A;     /* PMS 7694 — primary */
+    --green:#008C44;    /* PMS 348 */
+    --lime:#80C342;     /* PMS 376 */
+    --yellow:#FFCE01;   /* PMS 116 */
+    --teal:#57B6B2;     /* PMS 7472 */
+    --coral:#EA6852;    /* PMS 7416 */
+    --blue:#6BAED5;     /* PMS 542 */
+    --beige:#D9CFB9;    /* PMS 9163 */
+    --gray:#636363;
+    --paper:#fcfbf7;
+    --cream:#f7f4ec;
+    --cream-2:#ece5d6;
+    --ink:#15202b;
+    --muted:#5a646d;
+    --line:rgba(1,46,77,.14);
+    --shadow:0 30px 70px -34px rgba(1,46,77,.45);
+    --r:20px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  h1,h2,h3,h4{font-family:'Montserrat',system-ui,sans-serif;line-height:1.02;font-weight:800;letter-spacing:-.02em}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 32px}
+  .eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--green);display:inline-flex;align-items:center;gap:.6rem}
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--green);display:inline-block}
+  .eyebrow.light{color:var(--yellow)}.eyebrow.light::before{background:var(--yellow)}
+
+  .btn{display:inline-flex;align-items:center;gap:.6rem;font-weight:700;font-size:.92rem;padding:.95rem 1.7rem;border-radius:999px;transition:.25s var(--ease);cursor:pointer;border:2px solid transparent;letter-spacing:.01em}
+  .btn .ar{transition:transform .25s var(--ease)}
+  .btn:hover .ar{transform:translateX(4px)}
+  .btn-gold{background:var(--yellow);color:var(--navy)}
+  .btn-gold:hover{background:#ffd942;transform:translateY(-2px)}
+  .btn-green{background:var(--green);color:#fff}
+  .btn-green:hover{background:#00a04d;transform:translateY(-2px)}
+  .btn-navy{background:var(--navy);color:#fff}
+  .btn-navy:hover{background:var(--navy-900);transform:translateY(-2px)}
+  .btn-ghost{border-color:rgba(255,255,255,.55);color:#fff}
+  .btn-ghost:hover{background:rgba(255,255,255,.14)}
+  .btn-outline{border-color:var(--navy);color:var(--navy)}
+  .btn-outline:hover{background:var(--navy);color:#fff}
+
+  /* ===== Top bar ===== */
+  .topbar{background:var(--navy-900);color:#cfe0ec;font-size:.78rem}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;padding:.5rem 32px;flex-wrap:wrap;gap:.5rem}
+  .topbar a{opacity:.85}.topbar a:hover{opacity:1}
+  .topbar .links{display:flex;gap:1.4rem;align-items:center}
+
+  /* ===== Nav ===== */
+  header.nav{position:sticky;top:0;z-index:60;background:rgba(252,251,247,.9);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:.3s var(--ease)}
+  header.nav.scrolled{border-bottom-color:var(--line);box-shadow:0 8px 30px -20px rgba(1,46,77,.4)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 32px;gap:1rem;transition:padding .3s var(--ease)}
+  header.nav.scrolled .wrap{padding:.55rem 32px}
+  .logo-img{height:56px;width:auto;transition:height .3s var(--ease)}
+  header.nav.scrolled .logo-img{height:42px}
+  nav.menu{display:flex;gap:2rem;align-items:center;font-weight:600;font-size:.9rem}
+  nav.menu a{position:relative;padding:.2rem 0;color:var(--navy)}
+  nav.menu a::after{content:"";position:absolute;left:0;bottom:-3px;height:2px;width:0;background:var(--green);transition:width .25s var(--ease)}
+  nav.menu a:hover::after{width:100%}
+  .nav-cta{display:flex;gap:.6rem;align-items:center}
+  .menu-toggle{display:none}
+
+  /* ===== Marquee ===== */
+  .marquee{background:var(--green);color:#fff;overflow:hidden;white-space:nowrap;border-top:3px solid var(--lime);border-bottom:3px solid var(--lime)}
+  .marquee .track{display:inline-flex;gap:0;animation:scroll 32s linear infinite;will-change:transform}
+  .marquee span{font-family:'Montserrat';font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:1.05rem;padding:.7rem 1.5rem;display:inline-flex;align-items:center;gap:1.5rem}
+  .marquee span::after{content:"✦";color:var(--yellow)}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ===== Hero ===== */
+  .hero{position:relative;color:#fff;overflow:hidden;background:var(--navy-900);min-height:92vh;display:flex;align-items:flex-end}
+  .hero-media{position:absolute;inset:0}
+  .hero-media img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);animation:heroZoom 14s var(--ease) forwards}
+  @keyframes heroZoom{to{transform:scale(1)}}
+  .hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(1,30,50,.55) 0%,rgba(1,30,50,.2) 35%,rgba(1,30,50,.85) 100%)}
+  .hero-inner{position:relative;padding:0 0 5rem;width:100%}
+  .hero .eyebrow{color:var(--yellow)}.hero .eyebrow::before{background:var(--yellow)}
+  .hero h1{font-size:clamp(1.9rem,5.6vw,5.4rem);font-weight:900;text-transform:uppercase;line-height:1.24;margin:1.4rem 0 0;max-width:none;letter-spacing:.005em}
+  .hero h1 .line{display:block;margin-bottom:.16em;white-space:nowrap}
+  .hero h1 .hl{display:inline-block;white-space:nowrap;background:var(--yellow);color:var(--navy);padding:.04em .22em;border-radius:4px}
+  .hero p.lead{font-size:1.2rem;max-width:50ch;margin:1.8rem 0 2.2rem;color:#eaf1f5}
+  .hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+  .scroll-cue{position:absolute;bottom:1.6rem;right:32px;display:flex;align-items:center;gap:.6rem;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:#dce8f0;opacity:.85}
+  .scroll-cue .dot{width:26px;height:42px;border:2px solid rgba(255,255,255,.6);border-radius:14px;position:relative}
+  .scroll-cue .dot::after{content:"";position:absolute;left:50%;top:8px;transform:translateX(-50%);width:4px;height:8px;background:var(--yellow);border-radius:2px;animation:cue 1.6s infinite}
+  @keyframes cue{0%{opacity:0;top:8px}40%{opacity:1}80%{opacity:0;top:22px}100%{opacity:0}}
+
+  /* ===== Reveal ===== */
+  .reveal{opacity:0;transform:translateY(38px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.hero-media img{animation:none;transform:none}.marquee .track{animation:none}}
+
+  /* ===== Section scaffold ===== */
+  section.block{padding:7rem 0}
+  .sec-head{max-width:680px;margin-bottom:3.2rem}
+  .sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .sec-head h2{font-size:clamp(2.1rem,4.6vw,3.6rem);color:var(--navy);margin:.7rem 0;text-transform:uppercase;letter-spacing:-.02em}
+  .sec-head p{color:var(--muted);font-size:1.08rem}
+
+  /* ===== Audience tiles (Protest-style) ===== */
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+  .tile{position:relative;border-radius:var(--r);overflow:hidden;min-height:520px;display:flex;align-items:flex-end;color:#fff;isolation:isolate}
+  .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .9s var(--ease)}
+  .tile::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(1,46,106,0) 30%,rgba(1,30,50,.9));transition:background .4s}
+  .tile:hover img{transform:scale(1.07)}
+  .tile:hover::after{background:linear-gradient(180deg,rgba(1,46,106,.15) 10%,rgba(1,30,50,.92))}
+  .tile .tbody{padding:2.2rem;width:100%}
+  .tile .num{font-family:'Montserrat';font-weight:800;font-size:.8rem;letter-spacing:.2em;opacity:.8;color:var(--yellow)}
+  .tile h3{font-size:2rem;text-transform:uppercase;margin:.5rem 0 .4rem}
+  .tile p{font-size:.95rem;color:#e4eef4;max-width:34ch;max-height:0;opacity:0;overflow:hidden;transition:.45s var(--ease)}
+  .tile:hover p{max-height:120px;opacity:1;margin-bottom:1rem}
+  .tile .go{display:inline-flex;align-items:center;gap:.5rem;font-weight:700;font-size:.9rem;border-bottom:2px solid var(--yellow);padding-bottom:3px}
+  .tile .go .ar{transition:transform .25s var(--ease)}
+  .tile:hover .go .ar{transform:translateX(5px)}
+
+  /* ===== Statement / stats ===== */
+  .statement{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+  .statement::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% -10%,rgba(128,195,66,.25),transparent 45%)}
+  .statement .wrap{position:relative}
+  .statement h2{font-size:clamp(1.9rem,4vw,3.2rem);max-width:20ch;text-transform:uppercase;color:#fff}
+  .statement h2 em{font-style:normal;color:var(--yellow)}
+  .statement p{color:#cfe0ec;max-width:54ch;margin-top:1.4rem;font-size:1.1rem}
+  .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:3.5rem}
+  .stat{border-top:3px solid var(--lime);padding-top:1.2rem}
+  .stat b{font-family:'Montserrat';font-size:clamp(2.4rem,4.5vw,3.6rem);font-weight:900;color:#fff;display:block;line-height:1}
+  .stat span{font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:#a9c4d6;font-weight:600;margin-top:.4rem;display:block}
+  .stat:nth-child(2){border-color:var(--yellow)}
+  .stat:nth-child(3){border-color:var(--teal)}
+  .stat:nth-child(4){border-color:var(--coral)}
+
+  /* ===== Spotlight rows (Lamb Weston-style) ===== */
+  .spot{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch}
+  .spot .media{position:relative;overflow:hidden;min-height:520px}
+  .spot .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+  .spot:hover .media img{transform:scale(1.05)}
+  .spot .copy{padding:4.5rem clamp(1.5rem,4vw,4rem);display:flex;flex-direction:column;justify-content:center}
+  .spot.flip .media{order:2}
+  .spot h2{font-size:clamp(1.9rem,3.6vw,3rem);color:var(--navy);text-transform:uppercase;margin:.7rem 0 1rem}
+  .spot p{color:var(--muted);font-size:1.05rem;max-width:46ch}
+  .spot.dark{background:var(--navy)}
+  .spot.dark h2{color:#fff}.spot.dark p{color:#cfe0ec}
+  .spot.cream{background:var(--cream)}
+  .spot.beige{background:var(--beige)}
+  .check-list{list-style:none;display:grid;gap:.7rem;margin:1.4rem 0 1.8rem}
+  .check-list li{display:flex;gap:.7rem;align-items:flex-start;font-size:.97rem}
+  .check-list .ck{flex:none;width:22px;height:22px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-size:.72rem;font-weight:700;margin-top:3px}
+  .spot.dark .check-list .ck{background:var(--yellow);color:var(--navy)}
+  .spot.dark .check-list li{color:#e4eef4}
+
+  /* quiz inside spotlight */
+  .quiz{background:#fff;border-radius:18px;padding:1.8rem;box-shadow:var(--shadow);margin-top:1.6rem;border:1px solid var(--line)}
+  .quiz .qtop{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+  .quiz .qtop .eyebrow{margin:0}
+  .quiz .progress-txt{font-size:.72rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-weight:700}
+  .quiz .bar{height:6px;background:var(--cream-2);border-radius:99px;overflow:hidden;margin-bottom:1.2rem}
+  .quiz .bar i{display:block;height:100%;width:33%;background:var(--yellow);border-radius:99px}
+  .quiz .q{font-family:'Montserrat';font-size:1.15rem;color:var(--navy);margin-bottom:1rem;font-weight:700}
+  .quiz .opts{display:grid;gap:.6rem;margin-bottom:1.2rem}
+  .quiz .opt{border:1.5px solid var(--line);border-radius:12px;padding:.8rem 1rem;font-size:.92rem;font-weight:600;cursor:pointer;transition:.18s;display:flex;justify-content:space-between;align-items:center}
+  .quiz .opt:hover{border-color:var(--green)}
+  .quiz .opt.sel{border-color:var(--green);background:#eef7f0;color:var(--green)}
+  .quiz .opt .dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);flex:none}
+  .quiz .opt.sel .dot{border-color:var(--green);background:var(--green);box-shadow:inset 0 0 0 3px #fff}
+
+  /* giving progress + tiers */
+  .progress-impact{margin:.4rem 0 1.4rem}
+  .progress-impact .lbl{display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:.5rem;color:#e4eef4}
+  .progress-impact .lbl b{color:var(--yellow)}
+  .progress-impact .bar{height:14px;background:rgba(255,255,255,.16);border-radius:99px;overflow:hidden}
+  .progress-impact .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--lime),var(--yellow));border-radius:99px;transition:width 1.4s var(--ease)}
+  .tiers{display:grid;gap:.7rem;margin:.5rem 0 1.8rem}
+  .tier{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.2rem;border:1px solid rgba(255,255,255,.22);border-radius:12px}
+  .tier b{font-family:'Montserrat';font-size:1rem;color:#fff}
+  .tier span{font-size:.85rem;color:#bcd2e1}
+
+  /* alumni login card */
+  .login{background:#fff;border-radius:18px;padding:2rem;box-shadow:var(--shadow);max-width:420px;margin-top:1.6rem}
+  .login h3{color:var(--navy);font-size:1.4rem;text-transform:uppercase}
+  .login .muted{color:var(--muted);font-size:.88rem;margin-bottom:1.3rem}
+  .field{margin-bottom:.9rem}
+  .field label{display:block;font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem}
+  .field input{width:100%;padding:.8rem 1rem;border:1.5px solid var(--line);border-radius:11px;font-size:.95rem;font-family:inherit;background:var(--paper)}
+  .field input:focus{outline:none;border-color:var(--green)}
+  .login .btn{width:100%;justify-content:center;margin-top:.3rem}
+  .row-links{display:flex;justify-content:space-between;font-size:.82rem;margin-top:1rem;color:var(--green);font-weight:600}
+  .tier-pills{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.4rem}
+  .tier-pills span{font-size:.72rem;font-weight:700;padding:.4rem .85rem;border-radius:99px;background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.25)}
+
+  /* ===== Carousel (Frans Hals-style) ===== */
+  .carousel-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2rem;gap:1rem;flex-wrap:wrap}
+  .carousel-head h2{font-size:clamp(2rem,4vw,3.2rem);color:var(--navy);text-transform:uppercase}
+  .car-nav{display:flex;gap:.6rem}
+  .car-nav button{width:50px;height:50px;border-radius:50%;border:2px solid var(--navy);background:transparent;color:var(--navy);font-size:1.1rem;cursor:pointer;transition:.2s;display:grid;place-items:center}
+  .car-nav button:hover{background:var(--navy);color:#fff}
+  .carousel{display:flex;gap:1.2rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:1rem;scrollbar-width:none}
+  .carousel::-webkit-scrollbar{display:none}
+  .ccard{flex:0 0 340px;scroll-snap-align:start;border-radius:var(--r);overflow:hidden;background:#fff;border:1px solid var(--line);transition:.3s var(--ease)}
+  .ccard:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+  .ccard .ph{height:300px;overflow:hidden}
+  .ccard .ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+  .ccard:hover .ph img{transform:scale(1.08)}
+  .ccard .cb{padding:1.4rem}
+  .ccard .cat{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--green);font-weight:700}
+  .ccard h4{font-size:1.2rem;color:var(--navy);margin:.4rem 0;text-transform:uppercase;line-height:1.1}
+  .ccard p{font-size:.88rem;color:var(--muted)}
+
+  /* ===== Events ===== */
+  .events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+  .event{border-radius:var(--r);overflow:hidden;background:#fff;border:1px solid var(--line);transition:.3s var(--ease);display:flex;flex-direction:column}
+  .event:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+  .event .ph{height:190px;overflow:hidden;position:relative}
+  .event .ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+  .event:hover .ph img{transform:scale(1.08)}
+  .event .date{position:absolute;top:14px;left:14px;background:#fff;border-radius:12px;padding:.45rem .75rem;text-align:center;line-height:1}
+  .event .date b{font-family:'Montserrat';display:block;font-size:1.4rem;color:var(--navy);font-weight:800}
+  .event .date span{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--coral);font-weight:700}
+  .event .body{padding:1.4rem;flex:1;display:flex;flex-direction:column}
+  .event h4{font-size:1.15rem;color:var(--navy);margin-bottom:.4rem;text-transform:uppercase;line-height:1.12}
+  .event p{font-size:.88rem;color:var(--muted);flex:1}
+  .event .go{margin-top:1rem;font-weight:700;color:var(--green);font-size:.84rem;display:inline-flex;gap:.4rem}
+
+  /* ===== News ===== */
+  .feed{background:var(--cream)}
+  .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+  .npost{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:.3s var(--ease)}
+  .npost:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+  .npost .ph{height:200px;overflow:hidden;position:relative}
+  .npost .ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+  .npost:hover .ph img{transform:scale(1.08)}
+  .badge{position:absolute;top:12px;left:12px;background:var(--yellow);color:var(--navy);font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .6rem;border-radius:6px}
+  .npost .nb{padding:1.5rem;flex:1;display:flex;flex-direction:column}
+  .npost .cat{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--green);font-weight:700}
+  .npost h4{font-size:1.2rem;color:var(--navy);margin:.5rem 0;text-transform:uppercase;line-height:1.12}
+  .npost p{font-size:.88rem;color:var(--muted);flex:1}
+  .npost .meta{font-size:.76rem;color:var(--muted);margin-top:1rem;border-top:1px solid var(--line);padding-top:.8rem}
+
+  /* ===== Partners ===== */
+  .partners{text-align:center}
+  .partner-logos{display:flex;flex-wrap:wrap;gap:3rem;justify-content:center;align-items:center;margin-top:2.5rem}
+  .partner-logos img{height:70px;width:auto;filter:grayscale(1);opacity:.65;transition:.25s}
+  .partner-logos img:hover{filter:none;opacity:1;transform:translateY(-3px)}
+
+  /* ===== Closing CTA ===== */
+  .final{position:relative;color:#fff;overflow:hidden;text-align:center;background:var(--navy-900)}
+  .final img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.28;z-index:0}
+  .final::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(1,46,106,.85),rgba(1,30,50,.92));z-index:1}
+  .final .wrap{position:relative;z-index:2;padding:7rem 32px}
+  .final h2{font-size:clamp(2.4rem,6vw,5rem);text-transform:uppercase;max-width:18ch;margin:0 auto 1.2rem;line-height:.95}
+  .final h2 em{font-style:normal;color:var(--yellow)}
+  .final p{color:#dce8f0;max-width:52ch;margin:0 auto 2.2rem;font-size:1.15rem}
+  .final .hero-actions{justify-content:center}
+
+  /* ===== Newsletter ===== */
+  .news-signup{background:var(--lime)}
+  .news-signup .wrap{display:flex;justify-content:space-between;align-items:center;gap:2rem;padding:3rem 32px;flex-wrap:wrap}
+  .news-signup h3{font-size:clamp(1.6rem,3vw,2.4rem);color:var(--navy);text-transform:uppercase;max-width:18ch}
+  .signup-form{display:flex;gap:.6rem;flex-wrap:wrap}
+  .signup-form input{padding:.95rem 1.2rem;border-radius:999px;border:2px solid var(--navy);min-width:280px;font-family:inherit;font-size:.95rem;background:#fff}
+  .signup-form input:focus{outline:none}
+
+  /* ===== Footer ===== */
+  footer.site{background:var(--navy-900);color:#bcd2e1;padding:4.5rem 0 2rem}
+  .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:2.5rem}
+  .foot-brand .logo-foot{height:64px;width:auto;filter:brightness(0) invert(1);opacity:.95}
+  .foot-brand p{font-size:.9rem;opacity:.8;margin-top:1.2rem;max-width:32ch}
+  footer h5{font-family:'Montserrat';font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);margin-bottom:1.1rem;font-weight:700}
+  footer ul{list-style:none;display:grid;gap:.6rem}
+  footer ul a{font-size:.9rem;opacity:.82}
+  footer ul a:hover{opacity:1;color:#fff}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.14);margin-top:3rem;padding-top:1.5rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.8rem;opacity:.7}
+  .credit{font-size:.78rem;opacity:.5;text-align:center;margin-top:1rem}
+
+  /* mockup banner */
+  .mock-banner{background:var(--ink);color:var(--cream);text-align:center;font-size:.78rem;padding:.5rem;letter-spacing:.04em}
+  .mock-banner b{color:var(--yellow)}
+
+  /* ===== Responsive ===== */
+  @media(max-width:980px){
+    nav.menu,.topbar{display:none}
+    .menu-toggle{display:grid;place-items:center;width:46px;height:46px;border:2px solid var(--navy);border-radius:12px;background:transparent;cursor:pointer;color:var(--navy);font-size:1.2rem}
+    .tiles{grid-template-columns:1fr}.tile{min-height:380px}.tile p{max-height:120px;opacity:1}
+    .stat-grid{grid-template-columns:1fr 1fr}
+    .spot{grid-template-columns:1fr}
+    .spot .media{min-height:340px;order:-1!important}
+    .events-grid,.news-grid{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:600px){
+    .wrap{padding:0 20px}
+    section.block{padding:4rem 0}
+    .stat-grid,.foot-grid{grid-template-columns:1fr}
+    .hero{min-height:80vh}
+    .hero-inner{padding:0 0 3rem}
+    .scroll-cue{display:none}
+    /* headline wraps on phones */
+    .hero h1{font-size:8.6vw;line-height:1.18;max-width:none}
+    .hero h1 .line,.hero h1 .hl{white-space:normal}
+    .hero h1 .hl{display:inline;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+    .hero p.lead{font-size:1.02rem;margin:1.3rem 0 1.8rem}
+    .hero-actions{width:100%}
+    .hero-actions .btn{flex:1;justify-content:center}
+    /* nav declutter */
+    .nav-cta .btn-outline{display:none}
+    .nav .wrap{padding:.7rem 20px}
+    .logo-img{height:44px}
+    header.nav.scrolled .logo-img{height:38px}
+    .btn{padding:.8rem 1.25rem;font-size:.85rem}
+    /* sections */
+    .marquee span{font-size:.85rem;padding:.55rem 1rem;gap:1rem}
+    .sec-head{margin-bottom:2rem}
+    .tile{min-height:340px}.tile h3{font-size:1.7rem}
+    .spot .copy{padding:3rem 1.4rem}
+    .statement .stat-grid{margin-top:2.4rem}
+    .carousel-head{flex-direction:column;align-items:flex-start}
+    .ccard{flex-basis:80vw}
+    .login{padding:1.5rem;max-width:none}
+    .news-signup .wrap{padding:2.4rem 20px;flex-direction:column;align-items:flex-start}
+    .signup-form{width:100%}
+    .signup-form input{min-width:0;flex:1}
+    .final .wrap{padding:5rem 20px}
+  }
+</style>
+</head>
+<body>
+
+<div class="mock-banner">CONCEPT MOCKUP — Homepage redesign for CALF, prepared by <b>Mox</b>. Brand colors, fonts &amp; logo per CALF Brand Quick Guide. Imagery for demonstration only.</div>
+
+<!-- Top bar -->
+<div class="topbar">
+  <div class="wrap">
+    <span>Cultivating California's agricultural leaders since 1970</span>
+    <div class="links">
+      <a href="#">Family Portal</a>
+      <a href="#">Online Store</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+    </div>
+  </div>
+</div>
+
+<!-- Nav -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#"><img class="logo-img" src="https://www.agleaders.org/wp-content/uploads/2025/11/al-logo-desc-hz-rgb.png" alt="California Agricultural Leadership Foundation"></a>
+    <nav class="menu">
+      <a href="#apply">Program</a>
+      <a href="#impact">About</a>
+      <a href="#alumni">Alumni</a>
+      <a href="#events">Events</a>
+      <a href="#news">News</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#alumni" class="btn btn-outline">Alumni Login</a>
+      <a href="#apply" class="btn btn-gold">Apply Now <span class="ar">→</span></a>
+    </div>
+    <button class="menu-toggle" onclick="alert('Navigation menu (mockup demo)')">☰</button>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-media">
+    <img src="https://www.agleaders.org/wp-content/uploads/2024/07/unsplash-posvpvbbrfg-sonoma-vineyard-2400x1600.jpg" alt="California vineyard at sunrise">
+  </div>
+  <div class="wrap hero-inner">
+    <span class="eyebrow">The premier leadership program in agriculture</span>
+    <h1><span class="line">Growing leaders who</span> <span class="hl">make a difference</span></h1>
+    <p class="lead">An advanced, 17-month leadership experience for emerging and mid-career leaders shaping the future of California agriculture.</p>
+    <div class="hero-actions">
+      <a href="#apply" class="btn btn-gold">Apply to Class 56 <span class="ar">→</span></a>
+      <a href="#apply" class="btn btn-ghost">Is this right for you?</a>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><span class="dot"></span></div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>Growing Leaders</span><span>Since 1970</span><span>1,500+ Alumni</span><span>5 Partner Universities</span><span>Class 56 Now Recruiting</span>
+    <span>Growing Leaders</span><span>Since 1970</span><span>1,500+ Alumni</span><span>5 Partner Universities</span><span>Class 56 Now Recruiting</span>
+  </div>
+</div>
+
+<!-- Audience tiles -->
+<section class="block" id="paths">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Find your path</span>
+      <h2>Three ways to grow with us</h2>
+      <p>Whether you're ready to apply, reconnect, or give back — start here.</p>
+    </div>
+    <div class="tiles">
+      <a href="#apply" class="tile reveal d1">
+        <img src="https://www.agleaders.org/wp-content/uploads/2025/02/pexels-nc-farm-bureau-mark-2886937-2400x1600.jpg" alt="Farmer in the field">
+        <div class="tbody">
+          <span class="num">01 / Prospective Fellows</span>
+          <h3>Apply</h3>
+          <p>Explore the curriculum, time commitment, cost, and outcomes — then take the next step.</p>
+          <span class="go">Start your journey <span class="ar">→</span></span>
+        </div>
+      </a>
+      <a href="#alumni" class="tile reveal d2">
+        <img src="https://www.agleaders.org/wp-content/uploads/2023/10/IGWAL_horiz-web-photo-Vessey.jpg" alt="Ag Leadership alumnus">
+        <div class="tbody">
+          <span class="num">02 / 1,500+ Alumni</span>
+          <h3>Connect</h3>
+          <p>Enter the secure portal: directory, learning modules, events, and peer connection.</p>
+          <span class="go">Enter the portal <span class="ar">→</span></span>
+        </div>
+      </a>
+      <a href="#impact" class="tile reveal d3">
+        <img src="https://www.agleaders.org/wp-content/uploads/2025/03/massimiliano-martini-ieefsajuorc-unsplash-strawberries-2400x1659.jpeg" alt="California strawberry harvest">
+        <div class="tbody">
+          <span class="num">03 / Donors &amp; Partners</span>
+          <h3>Give</h3>
+          <p>See your impact, explore giving levels, and help sustain a 55-year legacy.</p>
+          <span class="go">Give today <span class="ar">→</span></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Statement + stats -->
+<section class="block statement" id="impact">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow light">Leading the way since 1970</span>
+      <h2>One of the premier leadership programs <em>in the United States.</em></h2>
+      <p>More than 1,500 fellows have become catalysts for a vibrant agricultural industry — making lasting contributions to their businesses, communities, and families.</p>
+    </div>
+    <div class="stat-grid">
+      <div class="stat reveal d1"><b data-count="1500" data-suffix="+">0</b><span>Program Graduates</span></div>
+      <div class="stat reveal d1"><b data-count="55">0</b><span>Years of Impact</span></div>
+      <div class="stat reveal d2"><b data-count="17">0</b><span>Months to Complete</span></div>
+      <div class="stat reveal d3"><b data-count="5">0</b><span>Partner Universities</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Spotlight: Application Journey + quiz -->
+<section class="spot cream" id="apply">
+  <div class="media reveal"><img src="https://www.agleaders.org/wp-content/uploads/2025/02/calf-2400x1416.jpg" alt="Ag Leadership fellows"></div>
+  <div class="copy reveal d1">
+    <span class="eyebrow">The Application Journey</span>
+    <h2>Is the program right for you?</h2>
+    <p>It's a serious commitment — and a transformational one. Here's what the experience asks, and what you'll gain.</p>
+    <ul class="check-list">
+      <li><span class="ck">✓</span> 17-month cohort experience with 24 fellows per class</li>
+      <li><span class="ck">✓</span> Seminars across California plus national &amp; international travel</li>
+      <li><span class="ck">✓</span> Curriculum delivered with five partner universities</li>
+      <li><span class="ck">✓</span> A lifelong network of 1,500+ agricultural leaders</li>
+    </ul>
+    <!-- Interactive quiz -->
+    <div class="quiz">
+      <div class="qtop">
+        <span class="eyebrow">2-min self-assessment</span>
+        <span class="progress-txt">Question 1 of 3</span>
+      </div>
+      <div class="bar"><i></i></div>
+      <div class="q">Where are you in your agricultural career?</div>
+      <div class="opts" id="opts">
+        <div class="opt" data-i="1"><span>Emerging leader (5–10 yrs)</span><span class="dot"></span></div>
+        <div class="opt" data-i="2"><span>Mid-career / management</span><span class="dot"></span></div>
+        <div class="opt" data-i="3"><span>Established owner / executive</span><span class="dot"></span></div>
+      </div>
+      <a href="#" class="btn btn-green" style="width:100%;justify-content:center">Continue <span class="ar">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- Carousel: Class highlights -->
+<section class="block">
+  <div class="wrap">
+    <div class="carousel-head">
+      <div class="reveal">
+        <span class="eyebrow">From the cohort</span>
+        <h2>Meet Class 55</h2>
+      </div>
+      <div class="car-nav reveal d1">
+        <button onclick="scrollCar(-1)" aria-label="Previous">←</button>
+        <button onclick="scrollCar(1)" aria-label="Next">→</button>
+      </div>
+    </div>
+    <div class="carousel" id="carousel">
+      <article class="ccard"><div class="ph"><img src="https://www.agleaders.org/wp-content/uploads/2025/03/dsc-1096-rice-2400x1875.jpg" alt=""></div><div class="cb"><span class="cat">Rice · Sacramento Valley</span><h4>Stewards of the land</h4><p>Fellows leading sustainable production across California's regions.</p></div></article>
+      <article class="ccard"><div class="ph"><img src="https://www.agleaders.org/wp-content/uploads/2025/02/pexels-timmossholder-3804878-2400x1600.jpg" alt=""></div><div class="cb"><span class="cat">Specialty Crops</span><h4>Innovating for the future</h4><p>Bringing new thinking to age-old challenges in agriculture.</p></div></article>
+      <article class="ccard"><div class="ph"><img src="https://www.agleaders.org/wp-content/uploads/2025/02/pexels-markusspiske-113335-2400x1600.jpg" alt=""></div><div class="cb"><span class="cat">Viticulture</span><h4>Rooted in community</h4><p>Leaders serving their industry, communities, and families.</p></div></article>
+      <article class="ccard"><div class="ph"><img src="https://www.agleaders.org/wp-content/uploads/2025/02/pexels-cottonbro-4921196-2400x1600.jpg" alt=""></div><div class="cb"><span class="cat">Agribusiness</span><h4>Catalysts for change</h4><p>Driving a vibrant agricultural economy statewide.</p></div></article>
+      <article class="ccard"><div class="ph"><img src="https://www.agleaders.org/wp-content/uploads/2025/02/pexels-timmossholder-974316-2400x1600.jpg" alt=""></div><div class="cb"><span class="cat">Production</span><h4>Growing with purpose</h4><p>Advancing, benefiting, and promoting California agriculture.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- Spotlight: Alumni portal (dark, flipped) -->
+<section class="spot dark flip" id="alumni">
+  <div class="media reveal"><img src="https://www.agleaders.org/wp-content/uploads/2025/02/pexels-pedrocraveirophoto-3820994-2400x1600.jpg" alt="Alumni community"></div>
+  <div class="copy reveal d1">
+    <span class="eyebrow light">Members-only alumni area</span>
+    <h2>The community that grew with you</h2>
+    <p>Securely connect with 1,500+ graduates. Search the directory, access learning modules, RSVP to events, and keep growing — for life.</p>
+    <div class="tier-pills">
+      <span>Tier 1 · Active Fellows</span>
+      <span>Tier 2 · Verified Alumni</span>
+      <span>Tier 3 · University Partners</span>
+    </div>
+    <div class="login">
+      <h3>Alumni Sign In</h3>
+      <p class="muted">Access your directory and learning hub.</p>
+      <div class="field"><label>Email</label><input type="email" placeholder="you@example.com"></div>
+      <div class="field"><label>Password</label><input type="password" placeholder="••••••••"></div>
+      <a href="#" class="btn btn-green">Log In to the Portal <span class="ar">→</span></a>
+      <div class="row-links"><a href="#">Forgot password?</a><a href="#">Request access</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- Spotlight: Giving (navy, dark) -->
+<section class="spot dark">
+  <div class="media reveal"><img src="https://www.agleaders.org/wp-content/uploads/2026/06/lettuce-field-kindful.jpg" alt="Lettuce field"></div>
+  <div class="copy reveal d1">
+    <span class="eyebrow light">Invest in Ag Leadership</span>
+    <h2>Your gift grows deep roots</h2>
+    <p>Every gift sustains, grows, and strengthens the programs that preserve California agriculture for the next generation.</p>
+    <div class="progress-impact">
+      <div class="lbl"><span>2026 Annual Appeal</span><span><b>$432K</b> of $600K</span></div>
+      <div class="bar"><i data-fill="72"></i></div>
+    </div>
+    <div class="tiers">
+      <div class="tier"><b>Seed Circle</b><span>$1,000+</span></div>
+      <div class="tier"><b>Grower's Society</b><span>$5,000+</span></div>
+      <div class="tier"><b>Legacy Partner</b><span>$25,000+ · recurring</span></div>
+    </div>
+    <div class="hero-actions"><a href="#" class="btn btn-gold">Give Today <span class="ar">→</span></a></div>
+  </div>
+</section>
+
+<!-- Events -->
+<section class="block" id="events">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Stay connected</span>
+      <h2>Upcoming events</h2>
+      <p>Reconnects, socials, and gatherings across California's agricultural regions.</p>
+    </div>
+    <div class="events-grid">
+      <article class="event reveal d1">
+        <div class="ph"><img src="https://www.agleaders.org/wp-content/uploads/2025/02/pexels-nc-farm-bureau-mark-2886937-2400x1600.jpg" alt=""><div class="date"><b>25</b><span>Jun</span></div></div>
+        <div class="body"><h4>Region 1 Reconnect Social &amp; Dinner</h4><p>Join us for the Region 1 Reconnect Social and Dinner with fellow alumni.</p><span class="go">Learn more <span class="ar">→</span></span></div>
+      </article>
+      <article class="event reveal d2">
+        <div class="ph"><img src="https://www.agleaders.org/wp-content/uploads/2025/03/dsc-1096-rice-2400x1875.jpg" alt=""><div class="date"><b>16</b><span>Jul</span></div></div>
+        <div class="body"><h4>Social at the Salinas Rodeo</h4><p>Join Ag Leadership alumni for an evening at the Salinas Rodeo.</p><span class="go">Learn more <span class="ar">→</span></span></div>
+      </article>
+      <article class="event reveal d3">
+        <div class="ph"><img src="https://www.agleaders.org/wp-content/uploads/2025/02/pexels-timmossholder-3804878-2400x1600.jpg" alt=""><div class="date"><b>16</b><span>Jul</span></div></div>
+        <div class="body"><h4>Social at the Stanislaus County Fair</h4><p>Gather with Ag Leadership alumni at the Stanislaus County Fair.</p><span class="go">Learn more <span class="ar">→</span></span></div>
+      </article>
+    </div>
+    <div style="text-align:center;margin-top:2.6rem" class="reveal"><a href="#" class="btn btn-outline">View All Events <span class="ar">→</span></a></div>
+  </div>
+</section>
+
+<!-- News -->
+<section class="block feed" id="news">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">A living homepage</span>
+      <h2>From the field</h2>
+      <p>Fresh stories, news, and insights from fellows and alumni — surfaced live across the site.</p>
+    </div>
+    <div class="news-grid">
+      <article class="npost reveal d1">
+        <div class="ph"><img src="https://www.agleaders.org/wp-content/uploads/2026/06/lettuce-field-kindful.jpg" alt=""><span class="badge">Feature</span></div>
+        <div class="nb"><span class="cat">Class 55</span><h4>Meet the fellows shaping the future</h4><p>The leaders shaping the future of California agriculture.</p><div class="meta">Leadership Insights · 4 min read</div></div>
+      </article>
+      <article class="npost reveal d2">
+        <div class="ph"><img src="https://www.agleaders.org/wp-content/uploads/2025/02/pexels-cottonbro-4921196-2400x1600.jpg" alt=""><span class="badge">New</span></div>
+        <div class="nb"><span class="cat">News Release</span><h4>Applications open for Class 56</h4><p>The next cohort of emerging agricultural leaders is now recruiting.</p><div class="meta">Foundation News · Jun 2026</div></div>
+      </article>
+      <article class="npost reveal d3">
+        <div class="ph"><img src="https://www.agleaders.org/wp-content/uploads/2025/02/pexels-markusspiske-113335-2400x1600.jpg" alt=""></div>
+        <div class="nb"><span class="cat">Publication</span><h4>Lifelong Leadership Learning</h4><p>Continuing education and First Fridays for the alumni community.</p><div class="meta">Resources · Ongoing</div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Partners -->
+<section class="block partners">
+  <div class="wrap reveal">
+    <span class="eyebrow" style="justify-content:center">Learning from experts</span>
+    <h2 style="font-size:clamp(2rem,4vw,3rem);color:var(--navy);margin-top:.7rem;text-transform:uppercase">Five partner universities</h2>
+    <p style="color:var(--muted);max-width:62ch;margin:1rem auto 0">An integrated, comprehensive curriculum delivered with Cal Poly Pomona, Cal Poly San Luis Obispo, Fresno State, UC Davis, and Chico State.</p>
+    <div class="partner-logos">
+      <img src="https://www.agleaders.org/wp-content/uploads/2025/01/cal-poly-pomona-logo-web.png" alt="Cal Poly Pomona">
+      <img src="https://www.agleaders.org/wp-content/uploads/2022/09/CP-SLO-logo-new.png" alt="Cal Poly San Luis Obispo">
+      <img src="https://www.agleaders.org/wp-content/uploads/2022/09/Fresno-State-logo_web.png" alt="Fresno State">
+      <img src="https://www.agleaders.org/wp-content/uploads/2022/08/Page-8-UC-Davis-logo.png" alt="UC Davis">
+      <img src="https://www.agleaders.org/wp-content/uploads/2025/01/chicostate-logo-rgb-primary-2c-2-300x219.jpg" alt="Chico State">
+    </div>
+  </div>
+</section>
+
+<!-- Closing CTA -->
+<section class="final">
+  <img src="https://www.agleaders.org/wp-content/uploads/2025/02/pexels-alice1-15913584-2400x3600.jpg" alt="">
+  <div class="wrap">
+    <span class="eyebrow light" style="justify-content:center">Class 56 applications are open</span>
+    <h2 style="margin-top:1rem">Ready to grow into the leader <em>agriculture needs?</em></h2>
+    <p>Take the first step toward one of the premier leadership development experiences in the United States.</p>
+    <div class="hero-actions">
+      <a href="#apply" class="btn btn-gold">Apply Now <span class="ar">→</span></a>
+      <a href="#" class="btn btn-ghost">Download the Program Guide</a>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<section class="news-signup">
+  <div class="wrap">
+    <h3>Stay connected with Ag Leadership</h3>
+    <form class="signup-form" onsubmit="return false">
+      <input type="email" placeholder="Enter your email address" aria-label="Email">
+      <button class="btn btn-navy" type="submit">Subscribe <span class="ar">→</span></button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img class="logo-foot" src="https://www.agleaders.org/wp-content/uploads/2025/11/al-logo-desc-hz-rgb.png" alt="California Agricultural Leadership Foundation">
+        <p>California Agricultural Leadership Foundation<br>80 Garden Court, Suite 270<br>Monterey, CA 93940 · P 831-585-1030</p>
+      </div>
+      <div>
+        <h5>Programs</h5>
+        <ul><li><a href="#">Ag Leadership Program</a></li><li><a href="#">Application Journey</a></li><li><a href="#">Exchange Programs</a></li><li><a href="#">Partner Universities</a></li></ul>
+      </div>
+      <div>
+        <h5>Community</h5>
+        <ul><li><a href="#">Alumni Directory</a></li><li><a href="#">Regional Map</a></li><li><a href="#">Events</a></li><li><a href="#">L4 Learning</a></li></ul>
+      </div>
+      <div>
+        <h5>Get Involved</h5>
+        <ul><li><a href="#">Give Today</a></li><li><a href="#">News &amp; Resources</a></li><li><a href="#">Online Store</a></li><li><a href="#">Contact Us</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 California Agricultural Leadership Foundation. All rights reserved.</span>
+      <span>Sitemap · Privacy Policy · Accessibility</span>
+    </div>
+    <div class="credit">Homepage concept mockup designed by Mox · wearemox.com</div>
+  </div>
+</footer>
+
+<script>
+  // Sticky nav shrink
+  const nav=document.getElementById('nav');
+  addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+
+  // Scroll reveals
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Animated counters
+  const cio=new IntersectionObserver((es)=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting)return;
+      const el=e.target,end=+el.dataset.count,suf=el.dataset.suffix||'';
+      let t0=null;const dur=1400;
+      const step=(t)=>{if(!t0)t0=t;const p=Math.min((t-t0)/dur,1);
+        el.textContent=Math.floor(p*end).toLocaleString()+(p===1?suf:'');
+        if(p<1)requestAnimationFrame(step);};
+      requestAnimationFrame(step);cio.unobserve(el);
+    });
+  },{threshold:.6});
+  document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+  // Giving bar fill on reveal
+  const bio=new IntersectionObserver((es)=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.style.width=e.target.dataset.fill+'%';bio.unobserve(e.target);}});
+  },{threshold:.5});
+  document.querySelectorAll('[data-fill]').forEach(el=>bio.observe(el));
+
+  // Quiz selection
+  document.querySelectorAll('#opts .opt').forEach(o=>o.addEventListener('click',()=>{
+    document.querySelectorAll('#opts .opt').forEach(x=>x.classList.remove('sel'));o.classList.add('sel');
+  }));
+
+  // Carousel arrows
+  function scrollCar(d){document.getElementById('carousel').scrollBy({left:d*360,behavior:'smooth'});}
+</script>
+</body>
+</html>
